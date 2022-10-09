@@ -46,7 +46,6 @@ export class App extends Component {
     if (
       this.state.contacts.some(
         contact =>
-          contact.name.toLocaleLowerCase() === name.toLocaleLowerCase() ||
           contact.number.toLocaleLowerCase() === number.toLocaleLowerCase()
       )
     ) {
