@@ -1,6 +1,7 @@
 import { Button, Input, Label, FormBox, Error } from './ContactForm.styled';
 import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import InputMask from 'react-input-mask';
 
 let schema = Yup.object().shape({
   name: Yup.string().min(4).max(32).required(),
@@ -36,12 +37,14 @@ export const ContactForm = ({ onSubmit }) => {
           <p>Number</p>
           <Input
             type="tel"
-            id="number"
+            id="phone-mask"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
-            placeholder="111-11-11"
+            placeholder="Enter phone number"
+            as={InputMask}
+            mask="999-99-99"
           />
         </Label>
         <Button type="submit">Add contact</Button>
