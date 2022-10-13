@@ -15,6 +15,7 @@ export const ContactForm = ({ onSubmit }) => {
   const handleSubmit = (values, { resetForm }) => {
     onSubmit(values);
     resetForm();
+    console.log(values);
   };
 
   return (
@@ -26,7 +27,13 @@ export const ContactForm = ({ onSubmit }) => {
       <FormBox action="">
         <Label htmlFor="name">
           <p>Name</p>
-          <Input name="name" type="text" placeholder="Enter name" />
+          <Input
+            name="name"
+            type="text"
+            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            placeholder="Enter name"
+          />
           <ErrorMessage name="name">
             {() => <Error>Name must be at least 4 characters</Error>}
           </ErrorMessage>
@@ -40,7 +47,8 @@ export const ContactForm = ({ onSubmit }) => {
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
-            placeholder="(___) ___-____"
+            maxLength="7"
+            placeholder="___-__-__"
           />
         </Label>
         <Button type="submit">Add contact</Button>

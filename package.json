@@ -16,6 +16,7 @@
     "react-phone-number-input": "^3.2.11",
     "react-scripts": "5.0.1",
     "react-text-mask": "^5.5.0",
+    "react-toastify": "^9.0.8",
     "styled-component": "^2.8.0",
     "styled-components": "^5.3.6",
     "web-vitals": "^2.1.3",

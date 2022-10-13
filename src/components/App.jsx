@@ -4,6 +4,8 @@ import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
 import { ContactList } from './ContactList/ContactList';
 import { nanoid } from 'nanoid';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export class App extends Component {
   state = {
@@ -20,7 +22,19 @@ export class App extends Component {
 
   deleteTodo = contactId => {
     this.setState(prevState => ({
-      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
+      contacts: prevState.contacts.filter(contact => {
+        toast.success(`${contact.name} removed from contacts `, {
+          position: 'top-right',
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: 'colored',
+        });
+        return contact.id !== contactId;
+      }),
     }));
   };
 
@@ -49,8 +63,27 @@ export class App extends Component {
           contact.number.toLocaleLowerCase() === number.toLocaleLowerCase()
       )
     ) {
-      alert(`${name} is already in contact`);
+      toast.error(`${name} is already in contact`, {
+        position: 'top-right',
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: 'colored',
+      });
     } else {
+      toast.success(`${name} added to contacts `, {
+        position: 'top-right',
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: 'colored',
+      });
       this.setState(prevState => ({
         contacts: [contact, ...prevState.contacts],
       }));
@@ -92,6 +125,7 @@ export class App extends Component {
           <h1>Phonebook</h1>
           <ContactForm onSubmit={addContacts} />
         </Box>
+        <ToastContainer limit={1} />
       </Section>
     );
   }

@@ -42,6 +42,7 @@ export const Input = styled(Field)`
     color: #a8a8a8;
   }
 `;
+
 export const Error = styled.span`
   margin-top: 6px;
   font-size: 12px;
